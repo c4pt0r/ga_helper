@@ -23,6 +23,10 @@ long long BigRand(){
 	num = (num % (9999999999 - 1000000000)) + 1000000000;
 	return num;
 }
+void GAHelper::PerformGARequest(const std::wstring& label, const std::wstring& refer) {
+	GAParameters params(var_utmac, var_utmhn, label, refer);
+	GAHelper::PerformGARequest(params);
+}
 
 void GAHelper::PerformGARequest(const GAParameters& param){
 
@@ -125,6 +129,7 @@ DWORD WINAPI SendProc(LPVOID data){
 			  } else {
 				ZeroMemory( outBuffer, dataSize+1 );
 				if( !WinHttpReadData( request, (LPVOID)outBuffer, dataSize, &bytesDownloaded ) ) {
+					delete []outBuffer;
 					return false;
 				} 
 				// TODO: if you care about the response, please handle it here...

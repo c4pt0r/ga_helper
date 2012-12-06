@@ -2,10 +2,15 @@
 
 #include <sstream>
 
+// put your GA info here
+const std::wstring var_utmac = L"UA-11111111-11";
+const std::wstring var_utmhn = L"xxx.xxx.com";
+
 class GAParameters;
 class GAHelper {
 public:
 	static void GAHelper::PerformGARequest(const GAParameters& param);
+	static void GAHelper::PerformGARequest(const std::wstring& label, const std::wstring& refer);
 private:
 	GAHelper(void);
 };
